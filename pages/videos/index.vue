@@ -1,23 +1,35 @@
 <template>
-    <div>Vídeos</div>
+    <h2 class="text-4xl text-center">{{ $t('titulo') }}</h2>
 
-    <NuxtLink to="/videos/favoritos">Favoritos</NuxtLink>
-    <div class="videos">
-        <div v-for="video in videos" :key="video.id">
-            <h2>{{ video.descricao }}</h2>
-            <p v-data-horario="'dd/mm/yyyy'">{{ video.data_postagem }}</p>
+    <div class="grid grid-cols-2 lg:grid-cols-3 items-center justify-center gap-2">
+        <UCard v-for="video in videos" :key="video.id">
+            <template #header>
+                <h2>{{ video.descricao }}</h2>
+            </template>
+
             <iframe
-                width="550"
-                height="400"
+                class="h-48 w-full"
                 :src="video.url"
                 title="YouTube video player"
                 frameborder="0"
             />
 
-            <div>
-                <button @click="adicionarFavorito(video)">Adicionar favorito</button>
-            </div>
-        </div>
+            <template #footer>
+                <div class="flex justify-between">
+                    <UButton @click="favoritar(video)">{{ $t('textoBotaoFavorito') }}</UButton>
+                    <NuxtLink :to="{
+                        name: 'videos-id',
+                        params: { id: video.id.toString() }
+                    }">
+                        <UButton label="Ver vídeo" color="gray">
+                            <template #trailing>
+                                <UIcon name="i-heroicons-arrow-right-20-solid" />
+                            </template>
+                        </UButton>
+                    </NuxtLink>
+                </div>
+            </template>
+        </UCard>
     </div>
 </template>
 
@@ -25,10 +37,6 @@
 import { type Video } from '@/interfaces/video';
 
 const { $toast } = useNuxtApp();
-
-onMounted(() => {
-    $toast.success("Toast adicionado com sucesso!")
-})
 
 // const favoritos = useFavoritos();
 const { adicionarFavorito } = useVideoStore();
@@ -62,18 +70,9 @@ const videos: Array<Video> = [
 // const adicionarFavorito = (video: Video) => {
 //     favoritos.value.push(video);
 // }
+
+const favoritar = (video: Video) => {
+    adicionarFavorito(video);
+    $toast.success('Adicionado aos favoritos!')
+}
 </script>
-
-<style scoped>
-.videos {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.videos button {
-    display: inline-block;
-}
-</style>

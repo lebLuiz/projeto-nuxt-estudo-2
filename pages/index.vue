@@ -1,8 +1,7 @@
 <template>
-    <Header />
-    <div>
+    <h1 class="text-5xl text-center">
         Página Inicial
-    </div>
+    </h1>
 </template>
 
 <script setup>
