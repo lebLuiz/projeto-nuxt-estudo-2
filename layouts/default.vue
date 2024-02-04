@@ -34,34 +34,34 @@
                 :class="{ hidden: !isOpen, block: isOpen }"
                 class="w-full block flex-grow lg:flex lg:items-center lg:w-auto"
             >
-                <!-- <div class="text-sm lg:flex-grow">
+                <div class="text-sm lg:flex-grow">
                     <NuxtLink
-                        v-for="rota in rotasSistemas()"
-                        :key="rota.nome"
-                        :to="rota.path"
+                        to="/"
                         class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
                     >
-                        {{ rota.nome }}
+                        Home
                     </NuxtLink>
-                </div> -->
-                <div>
-                    <!-- <ClientOnly>
-                        <UButton
-                            :icon="
-                                isDark
-                                ? 'i-heroicons-moon-20-solid'
-                                : 'i-heroicons-sun-20-solid'
-                            "
-                            color="gray"
-                            variant="ghost"
-                            aria-label="Theme"
-                            @click="isDark = !isDark"
-                        />
 
-                        <template #fallback>
-                            <div class="w-8 h-8" />
-                        </template>
-                    </ClientOnly> -->
+                    <NuxtLink
+                        to="/videos"
+                        class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                    >
+                        Vídeos
+                    </NuxtLink>
+                    <NuxtLink
+                        to="/videos/adicionar"
+                        class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                    >
+                        Adicionar vídeo
+                    </NuxtLink>
+                    <NuxtLink
+                        to="/videos/favoritos"
+                        class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                    >
+                        Vídeos Favoritos
+                    </NuxtLink>
+                </div>
+                <div>
                     <ClientOnly>
                         <UButton
                             :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"

@@ -41,32 +41,12 @@ const { $toast } = useNuxtApp();
 // const favoritos = useFavoritos();
 const { adicionarFavorito } = useVideoStore();
 
-const videos: Array<Video> = [
-    {
-        id: 1,
-        descricao: "01 - Introdução e Instalação",
-        url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=7f_6dlRrBowDuaH2",
-        data_postagem: "2023-10-15",
-    },
-    {
-        id: 2,
-        descricao: "02 - Configuração",
-        url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=7f_6dlRrBowDuaH2",
-        data_postagem: "2023-10-20",
-    },
-    {
-        id: 3,
-        descricao: "03 - Pages",
-        url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=7f_6dlRrBowDuaH2",
-        data_postagem: "2023-10-10",
-    },
-    {
-        id: 4,
-        descricao: "04 - Components",
-        url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=7f_6dlRrBowDuaH2",
-        data_postagem: "2023-10-05",
-    },
-]
+const videos = ref<Video[]>([]);
+
+onMounted(async () => {
+    videos.value = await $fetch('/api/v1/videos')
+})
+
 // const adicionarFavorito = (video: Video) => {
 //     favoritos.value.push(video);
 // }
