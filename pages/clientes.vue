@@ -26,10 +26,10 @@
 </template>
 
 <script setup>
-const pagina = ref(1);
-const irPagina = (numeroPagina) => {
-    pagina.value = numeroPagina;
-}
+// const pagina = ref(1);
+// const irPagina = (numeroPagina) => {
+//     pagina.value = numeroPagina;
+// }
 
 // const { data: clientes, pending, error, refresh, execute, status } = useLazyFetch('https://reqres.in/api/users', {
 //     transform: (clientes) => {
@@ -58,5 +58,5 @@ const { data: cliente } = await useAsyncData('cliente',  async () => {
 console.log(cliente.value.pessoas)
 console.log(cliente.value.aleatorios)
 
-const { payload } = useNuxtApp();
+// const { payload } = useNuxtApp();
 </script>
