@@ -1,57 +1,59 @@
 <template>
-    <div class="mb-4">
-        <UButton
-            icon="i-heroicons-pencil-square"
-            size="sm"
-            color="green"
-            variant="solid"
-            label="Editar"
-            :trailing="false"
-            @click="abrirModal"
-        />
+    <div>
+        <div class="mb-4">
+            <UButton
+                icon="i-heroicons-pencil-square"
+                size="sm"
+                color="green"
+                variant="solid"
+                label="Editar"
+                :trailing="false"
+                @click="abrirModal"
+            />
 
-        <UButton
-            class="ml-4"
-            icon="i-heroicons-trash"
-            size="sm"
-            color="red"
-            variant="solid"
-            label="Deletar"
-            :trailing="false"
-            @click="deletarVideo"
-        />
+            <UButton
+                class="ml-4"
+                icon="i-heroicons-trash"
+                size="sm"
+                color="red"
+                variant="solid"
+                label="Deletar"
+                :trailing="false"
+                @click="deletarVideo"
+            />
 
-        <UModal v-model="isOpen">
-            <div class="p-4">
-                <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit">
-                    <UFormGroup label="Descrição" name="descricao">
-                        <UInput v-model="state.descricao" />
-                    </UFormGroup>
+            <UModal v-model="isOpen">
+                <div class="p-4">
+                    <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit">
+                        <UFormGroup label="Descrição" name="descricao">
+                            <UInput v-model="state.descricao" />
+                        </UFormGroup>
 
-                    <UFormGroup label="URL" name="url">
-                        <UInput v-model="state.url" type="url" />
-                    </UFormGroup>
+                        <UFormGroup label="URL" name="url">
+                            <UInput v-model="state.url" type="url" />
+                        </UFormGroup>
 
-                    <UButton type="submit">
-                        Salvar
-                    </UButton>
-                </UForm>
-            </div>
-        </UModal>
+                        <UButton type="submit">
+                            Salvar
+                        </UButton>
+                    </UForm>
+                </div>
+            </UModal>
+        </div>
+
+        <UCard class="w-[800px] justify-center">
+            <template #header>
+                <h2>{{ video?.descricao }}</h2>
+            </template>
+
+            <iframe
+                class="h-[500px] w-full"
+                :src="video?.url"
+                title="YouTube video player"
+                frameborder="0"
+            />
+        </UCard>
     </div>
-
-    <UCard class="w-[800px] justify-center">
-        <template #header>
-            <h2>{{ video?.descricao }}</h2>
-        </template>
-
-        <iframe
-            class="h-[500px] w-full"
-            :src="video?.url"
-            title="YouTube video player"
-            frameborder="0"
-        />
-    </UCard>
 </template>
 
 <script setup lang="ts">

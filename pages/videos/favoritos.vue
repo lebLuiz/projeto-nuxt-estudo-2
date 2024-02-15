@@ -1,27 +1,32 @@
 <template>
-    <h2 class="text-4xl text-center">{{ $t('tituloFavoritos') }}</h2>
+    <div>
+        <h2 class="text-4xl text-center">{{ $t('tituloFavoritos') }}</h2>
 
-    <div class="grid grid-cols-2 lg:grid-cols-3 items-center justify-center gap-2">
-        <UCard v-for="video in favoritos" :key="video.id">
-            <template #header>
-                <h2>{{ video.descricao }}</h2>
-            </template>
+        <div class="grid grid-cols-2 lg:grid-cols-3 items-center justify-center gap-2">
+            <UCard v-for="video in favoritos" :key="video.id">
+                <template #header>
+                    <h2>{{ video.descricao }}</h2>
+                </template>
 
-            <iframe
-                class="h-48 w-full"
-                :src="video.url"
-                title="YouTube video player"
-                frameborder="0"
-            />
+                <iframe
+                    class="h-48 w-full"
+                    :src="video.url"
+                    title="YouTube video player"
+                    frameborder="0"
+                />
 
-            <template #footer>
-                <UButton @click="removerFavorito(video.id)">Remover favorito</UButton>
-            </template>
-        </UCard>
+                <template #footer>
+                    <UButton @click="removerFavorito(video.id)">Remover favorito</UButton>
+                </template>
+            </UCard>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+    layout: 'exibicao'
+})
 // const favoritos = useFavoritos();
 
 const { $toast } = useNuxtApp();
